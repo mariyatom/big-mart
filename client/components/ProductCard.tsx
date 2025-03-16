@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Product } from '../../models/product'
+import { Link } from 'react-router-dom' // Import Link
 
 interface ProductCardProps {
   product: Product
@@ -17,16 +18,24 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
 
   return (
     <div className="product-card">
-      <div className="image-container">
-        <img src={product.image} alt={product.name} className="product-image" />
-      </div>
-      <h3 className="product-name">{product.name}</h3>
-      <p className="product-price">
-        <strong>
-          {product.currency} {product.price}
-        </strong>
-      </p>
-
+      <Link to={`/product/${product.name}`}>
+        {' '}
+        {/* Link to the product detail page */}
+        <div className="image-container">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-image"
+          />
+        </div>
+        <h3 className="product-name">{product.name}</h3>
+        <p className="product-price">
+          <strong>
+            {product.currency} {product.price}
+          </strong>
+        </p>
+      </Link>{' '}
+      {/* Close the Link tag */}
       {/* Quantity and Subtotal */}
       <div className="quantity-container">
         <label>Quantity</label>
@@ -41,7 +50,6 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
       <p className="subtotal">
         Subtotal: {product.currency} {subtotal}
       </p>
-
       {/* Add to Cart Button */}
       <button
         className="add-to-cart-btn"

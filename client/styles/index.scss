@@ -1,3 +1,4 @@
+// app.scss (Modify the existing styles)
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
 html, 
@@ -22,6 +23,8 @@ body {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
 }
 .nav-link{
   float: left;
@@ -34,4 +37,34 @@ body {
 .nav-link:hover{
   background-color: #ddd;
   color: black;
+}
+.nav-right {
+  display: flex;
+  margin-left: auto; /* Push it to the right */
+  align-items: center; /* Align items vertically */
+  background-color:#333; /* Yellow background */
+  padding: 0 10px; /* Add padding for spacing */
+}
+.nav-item { /* New class for equal spacing */
+  display: flex;
+  align-items: center;
+  margin-left: 15px; /* Adjust spacing as needed */
+  color: #fdc800;
+}
+.user-icon,
+.cart-icon {
+  cursor: pointer;
+  position: relative; 
+  width: 30px;
+  height: 25px;
+}
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #333; /* Dark background for count */
+  color: #ffcc00; /* Yellow color for count text */
+  border-radius: 50%;
+  padding: 4px 6px;
+  font-size: 12px;
 }

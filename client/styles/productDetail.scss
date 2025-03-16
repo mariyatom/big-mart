@@ -1,0 +1,102 @@
+/* styles/productDetail.scss */
+.product-detail-container {
+  padding: 20px;
+  font-family: sans-serif;
+  width: 100%; /* Make the container full width */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.breadcrumbs {
+  font-size: 0.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-content {
+  display: flex;
+  width: 100%; /* Make the content full width */
+  box-sizing: border-box;
+}
+
+.product-images {
+  display: flex;
+  width: 50%; /* 50% width for images */
+  box-sizing: border-box;
+}
+
+.thumbnail-container {
+  margin-right: 10px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.main-image-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  width: 100%; /* Make main image container take full width of its parent */
+  box-sizing: border-box;
+}
+
+.main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-details {
+  width: 50%; /* 50% width for details */
+  box-sizing: border-box;
+  padding-left: 20px; /* Add some padding to separate from images */
+}
+
+.price {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtotal {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+
+.quantity-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quantity-section label {
+  margin-right: 10px;
+  font-size: 0.8em;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 5px;
+  font-size: 0.8em;
+  border: 1px solid #ddd;
+}
+
+.add-to-cart-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 200px;
+  font-size: 0.9em;
+}

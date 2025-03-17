@@ -3,9 +3,9 @@ import Carousel from './Carousel'
 
 function Layout() {
   const images = [
-    '/client/assets/bigmartbgc1.jpeg',
-    '/client/assets/bigmartbgc2.webp',
-    '/client/assets/bigmartbgc3.webp',
+    '/client/assets/bmbgc2.jpg',
+    '/client/assets/bmbgc1.jpg',
+    '/client/assets/bmbgc4.jpg',
   ]
   return (
     <div>

@@ -18,9 +18,7 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product.name}`}>
-        {' '}
-        {/* Link to the product detail page */}
+      <Link to={`/products/${product.name}`}>
         <div className="image-container">
           <img
             src={product.image}
@@ -35,8 +33,6 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
           </strong>
         </p>
       </Link>{' '}
-      {/* Close the Link tag */}
-      {/* Quantity and Subtotal */}
       <div className="quantity-container">
         <label>Quantity</label>
         <input
@@ -50,7 +46,6 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
       <p className="subtotal">
         Subtotal: {product.currency} {subtotal}
       </p>
-      {/* Add to Cart Button */}
       <button
         className="add-to-cart-btn"
         onClick={() => addToCart(product, quantity)}

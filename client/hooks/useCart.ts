@@ -10,4 +10,4 @@
 
 // 3. useMutation to remove items from the cartData record by cartId
 
-// STRETCH: figure out a way to hold your "cartData" in lcoal storage, or a session, and only when someone makes a purchase, does it add an "order" record to the database. This way you're not clogging up your database with half completed orders.
+// STRETCH: figure out a way to hold your "cartData" in lcoal storage, or a session, and only when someone makes a purchase, does it add an "order" record to the database. This way you're not clogging up your database with half completed orders AND its less of a security risk, so you don't have to worry about someone stealing or editing your cartData.

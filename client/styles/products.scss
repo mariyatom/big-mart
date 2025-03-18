@@ -1,0 +1,126 @@
+/* Product Grid */
+.products-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 20px;
+}
+
+/* Grid Layout for Product Cards */
+.products-grid {
+  display: grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Product Card */
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Image Container */
+.image-container {
+  width: 100%;
+  height: 200px; 
+ 
+}
+
+/* Product Image */
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Product Name */
+.product-name {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  color:black;
+}
+.product-name a, 
+.product-price {
+  text-decoration: none !important;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Quantity Selector */
+.quantity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quantity-input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Subtotal */
+.subtotal {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #1b5e20;
+  }
+}
+/* Responsive media queries */
+
+@media screen and (max-width: 1000px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+
+
+}
+
+@media screen and (max-width: 620px) {
+
+
+  .products-grid{
+    grid-template-columns: 1fr;
+  }
+
+
+}

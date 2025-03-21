@@ -2,6 +2,7 @@
 import React, { useState, ChangeEvent } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
+import { useCartStore } from '../store/useCartStore' // Import Zustand store
 import '../styles/productDetail.scss'
 import { Product } from '../../models/product'
 
@@ -10,9 +11,16 @@ function ProductDetail() {
   const product: Product | undefined = products.find(
     (p) => p.name === productName
   )
+
+  // Access the cart from Zustand store
+  const cart = useCartStore((state) => state.cart)
+  // Find the existing item in the cart
+  const existingCartItem = cart.find((item) => item.product.id === product?.id)
+  const existingQuantity = existingCartItem ? existingCartItem.quantity : 0
+
   const [quantity, setQuantity] = useState<number>(1)
   const subtotal: string = product?.price
-    ? (product.price * quantity).toFixed(2)
+    ? (product.price * (existingQuantity + quantity)).toFixed(2)
     : '0.00' //  undefined price
 
   const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +72,9 @@ function ProductDetail() {
               className="quantity-input"
             />
           </div>
+          {existingQuantity > 0 && (
+            <p className="in-cart">In Cart: {existingQuantity}</p>
+          )}
           <button className="add-to-cart-button">ADD TO CART</button>
         </div>
       </div>

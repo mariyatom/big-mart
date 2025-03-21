@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../styles/app.scss'
 import SearchBar from './SearchBar'
@@ -22,6 +22,21 @@ const categories = [
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false)
   const navigate = useNavigate()
+  const [cartCount, setCartCount] = useState(0)
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart')
+    const cartItems: { quantity: number }[] = storedCart
+      ? JSON.parse(storedCart)
+      : []
+
+    setCartCount(
+      cartItems.reduce(
+        (total: number, item: { quantity: number }) => total + item.quantity,
+        0
+      )
+    )
+  }, [])
 
   const handleCartClick = () => {
     navigate('/cart')
@@ -74,7 +89,7 @@ function Navbar() {
           </div>
           <div className="cart-icon nav-item" onClick={handleCartClick}>
             <FontAwesomeIcon icon={faShoppingCart} />
-            <span className="cart-count">0</span>
+            <span className="cart-count">{cartCount}</span>
           </div>
         </div>
       </div>

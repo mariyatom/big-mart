@@ -1,5 +1,5 @@
 // components/CartPage.tsx
-import React, { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent } from 'react'
 import '../styles/cartPage.scss'
 import { products } from '../data/products'
 import { Link } from 'react-router-dom'
@@ -10,7 +10,7 @@ interface CartItem {
   quantity: number
 }
 
-function CartPage(): JSX.Element {
+function CartPage() {
   // TODO: in this component, you will need to make a useQuery call for the cartData.
   const cartItems: CartItem[] = [
     {
@@ -24,11 +24,11 @@ function CartPage(): JSX.Element {
       acc[item.productId] = item.quantity
       return acc
     },
-    {},
+    {}
   )
 
   const [quantities, setQuantities] = useState<{ [key: string]: number }>(
-    initialQuantities,
+    initialQuantities
   )
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
@@ -43,7 +43,7 @@ function CartPage(): JSX.Element {
     return cartItems
       .reduce((total: number, item: CartItem) => {
         const product: Product | undefined = products.find(
-          (p) => p.id === +item.productId,
+          (p) => p.id === +item.productId
         )
         if (product) {
           return total + (product.price || 0) * quantities[item.productId]
@@ -75,7 +75,7 @@ function CartPage(): JSX.Element {
           </div>
           {cartItems.map((item: CartItem) => {
             const product: Product | undefined = products.find(
-              (p) => p.id === +item.productId,
+              (p) => p.id === +item.productId
             )
             if (!product) return null
             return (
@@ -92,7 +92,7 @@ function CartPage(): JSX.Element {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                       handleQuantityChange(
                         item.productId,
-                        parseInt(e.target.value),
+                        parseInt(e.target.value)
                       )
                     }
                     min="1"
@@ -101,7 +101,7 @@ function CartPage(): JSX.Element {
                 <span>
                   $
                   {((product.price || 0) * quantities[item.productId]).toFixed(
-                    2,
+                    2
                   )}
                 </span>
                 <button

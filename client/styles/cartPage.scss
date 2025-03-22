@@ -142,3 +142,29 @@
   background-color: #006400;
   color: white;
 }
+//pickup
+
+.pickup-label {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.pickup-price {
+  color: green;
+  font-weight: bold;
+}
+
+.pickup-location {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.pickup-dropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}

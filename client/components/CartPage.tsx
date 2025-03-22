@@ -6,6 +6,13 @@ import useCartStore from '../store/useCartStore' // Zustand store
 function CartPage() {
   const { cart, addToCart, removeFromCart } = useCartStore()
 
+  const [pickupOption, setPickupOption] = useState('PICK UP')
+
+  // Handle Pickup Option Change
+  const handlePickupChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPickupOption(event.target.value)
+  }
+
   // Initialize state for quantities
   const initialQuantities = cart.reduce(
     (acc: { [key: string]: number }, item) => {
@@ -128,10 +135,30 @@ function CartPage() {
           <h3>ORDER SUMMARY</h3>
           <p className="total-price">${calculateSubtotal()}</p>
 
+          {/* Pickup Section */}
+          <p className="pickup-label">
+            Pickup <span className="pickup-price">FREE</span>
+          </p>
+          <p className="pickup-location">Auckland, New Zealand</p>
+
+          {/* Pickup Dropdown */}
+          <select
+            className="pickup-dropdown"
+            value={pickupOption}
+            onChange={handlePickupChange}
+          >
+            <option value="PICK UP">PICK UP</option>
+            <option value="DELIVERY" disabled>
+              DELIVERY (Not Available)
+            </option>
+          </select>
+
+          <p className="total-price">Total: ${calculateSubtotal()}</p>
+
           <Link to="/checkout" className="checkout-button">
             Proceed to Checkout
           </Link>
-          <Link to="/products" className="continue-shopping">
+          <Link to="/ProductsList" className="continue-shopping">
             Continue Shopping
           </Link>
         </div>

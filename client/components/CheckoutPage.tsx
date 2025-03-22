@@ -9,7 +9,7 @@ const CheckoutPage = () => {
   const [showSummary, setShowSummary] = useState(false)
   const [showPayment, setShowPayment] = useState(false) // New state for payment details
 
-  // State to track form inputs
+  // customer form inputs
   const [customer, setCustomer] = useState({
     email: '',
     firstName: '',
@@ -18,7 +18,7 @@ const CheckoutPage = () => {
     pickupTime: 'saturday-17-20',
   })
 
-  // State to track payment inputs
+  //  payment card-form inputs
   const [payment, setPayment] = useState({
     cardNumber: '',
     expiryDate: '',

@@ -8,7 +8,9 @@
   align-items: center;
   z-index: 1000;
 }
-
+a {
+  text-decoration: none;
+}
 .nav-link {
   padding: 14px 20px;
   text-decoration: none;

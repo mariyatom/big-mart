@@ -1,26 +1,37 @@
 // components/CategoryProducts.tsx
-import React from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { products } from '../data/products'
-import { categories } from '../data/categories'
+import { Link, useParams } from 'react-router-dom'
+// import { categories } from '../data/categories'
+// import { products } from '../data/products'
 import '../styles/categoryProducts.scss'
+import { useCategories } from '../hooks/useCategories'
+import { useProducts } from '../hooks/useProducts'
 
 function CategoryProducts() {
   const { categoryName } = useParams<{ categoryName: string }>()
+
+  const {
+    data: categoryData,
+    isLoading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories()
+  const {
+    data: productData,
+    isLoading: productsLoading,
+    error: productsError,
+  } = useProducts()
 
   if (!categoryName) {
     return <h2 className="text-center text-red-500">Category Not Found</h2>
   }
 
+  if (categoriesLoading || productsLoading) return <p>Loading...</p>
+  if (categoriesError || productsError) return <p>Error loading data.</p>
+
   // Decode the category name from the URL
   const decodedCategoryName = decodeURIComponent(categoryName)
 
-  // Log the decoded category name and each category name for debugging
-  console.log('Decoded Category Name:', decodedCategoryName)
-  categories.forEach((cat) => console.log('Category:', cat.category))
-
   // Find category by name (case-insensitive)
-  const category = categories.find(
+  const category = categoryData?.categories.find(
     (cat) =>
       cat.category.toLowerCase().replace(/\s+/g, '-') ===
       decodedCategoryName.toLowerCase().replace(/\s+/g, '-')
@@ -31,9 +42,11 @@ function CategoryProducts() {
   }
 
   // Filter products by category ID
-  const filteredProducts = products.filter(
-    (product) => product.category_id === category.id
-  )
+  const filteredProducts =
+    productData?.products.filter(
+      (product) => product.category_id === category.id
+    ) || []
+
   return (
     <div className="category-products-container">
       <div className="breadcrumbs">

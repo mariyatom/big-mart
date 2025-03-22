@@ -1,29 +1,42 @@
 // components/ProductDetail.tsx
-import React, { useState, ChangeEvent } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { products } from '../data/products'
+import { ChangeEvent, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { Product } from '../../models/product'
+import { useProducts } from '../hooks/useProducts'
 import { useCartStore } from '../store/useCartStore' // Import Zustand store
 import '../styles/productDetail.scss'
-import { Product } from '../../models/product'
+import ErrorMessage from './ErrorMessage'
+import LoadingIndicator from './LoadingIndicator'
+import Breadcrumbs from './Breadcrumbs'
+import ProductImages from './ProductImages'
 
 function ProductDetail() {
-  const { productName } = useParams()
+  const { productName } = useParams() // Get product name from URL
 
-  const product: Product | undefined = products.find(
+  const { data, isPending, isError, error } = useProducts() // Fetch products
+
+  // Access the cart from Zustand store
+  const cart = useCartStore((state) => state.cart)
+  const addToCart = useCartStore((state) => state.addToCart) // Access addToCart from Zustand
+
+  const [quantity, setQuantity] = useState<number>(1)
+
+  // Handle loading and error states
+  if (isPending) return <LoadingIndicator />
+  if (isError) return <ErrorMessage error={error} />
+
+  // Find the product based on the name from URL params
+  const product: Product | undefined = data?.products.find(
     (p) => p.name === productName
   )
   if (!product) {
     return <div>Product not found</div>
   }
-  // Access the cart from Zustand store
-  const cart = useCartStore((state) => state.cart)
-  const addToCart = useCartStore((state) => state.addToCart) // Access addToCart from Zustand
 
   // Find the existing item in the cart
   const existingCartItem = cart.find((item) => item.product.id === product?.id)
   const existingQuantity = existingCartItem ? existingCartItem.quantity : 0
 
-  const [quantity, setQuantity] = useState<number>(1)
   const subtotal: string = product?.price
     ? (product.price * quantity).toFixed(2) // Only multiply by input quantity
     : '0.00'
@@ -40,29 +53,9 @@ function ProductDetail() {
   }
   return (
     <div className="product-detail-container">
-      <div className="breadcrumbs">
-        <Link to="/" className="breadcrumb-link">
-          HOME
-        </Link>
-        /
-        <Link to="/ProductsList" className="breadcrumb-link">
-          PRODUCTS
-        </Link>
-        /{product.name.toUpperCase()}
-      </div>
+      <Breadcrumbs productName={product.name} />
       <div className="product-content">
-        <div className="product-images">
-          <div className="thumbnail-container">
-            <img src={product.image} alt={product.name} className="thumbnail" />
-          </div>
-          <div className="main-image-container">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="main-image"
-            />
-          </div>
-        </div>
+        <ProductImages product={product} />
         <div className="product-details">
           <h1>{product.name}</h1>
           <p className="price">${product.price}</p>

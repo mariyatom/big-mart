@@ -6,14 +6,14 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   try {
-    const categories = await db.getAllCategories()
+    const products = await db.getAllProducts()
 
-    res.json({ categories })
+    res.json({ products })
   } catch (error) {
     console.log(error)
     res
       .status(500)
-      .json({ message: 'Something went wrong while loading all categories' })
+      .json({ message: 'Something went wrong while loading all products' })
   }
 })
 

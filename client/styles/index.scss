@@ -68,3 +68,26 @@ body {
   padding: 4px 6px;
   font-size: 12px;
 }
+/** errors */
+.error-message {
+  display: block;
+  border: solid 1px red;
+  background: palevioletred;
+  color: white;
+  border-radius: 3px;
+  padding: 1rem;
+}
+//loading
+
+.loading-indicator {
+  display: flex;
+      justify-content: center;
+      height: 100vh;
+      background-color: darkgrey;
+}
+
+.loading-gif {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+}

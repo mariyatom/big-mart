@@ -52,7 +52,7 @@ const OrderConfirmation = () => {
 
   return (
     <div className="order-confirmation">
-      <h1>Order Confirmation</h1>
+      <h1>Order Summary</h1>
       <p>Thank you for your order, {customer.firstName}!</p>
 
       <h2>Customer Details</h2>

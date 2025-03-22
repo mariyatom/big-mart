@@ -8,30 +8,36 @@ import { Product } from '../../models/product'
 
 function ProductDetail() {
   const { productName } = useParams()
+
   const product: Product | undefined = products.find(
     (p) => p.name === productName
   )
-
+  if (!product) {
+    return <div>Product not found</div>
+  }
   // Access the cart from Zustand store
   const cart = useCartStore((state) => state.cart)
+  const addToCart = useCartStore((state) => state.addToCart) // Access addToCart from Zustand
+
   // Find the existing item in the cart
   const existingCartItem = cart.find((item) => item.product.id === product?.id)
   const existingQuantity = existingCartItem ? existingCartItem.quantity : 0
 
   const [quantity, setQuantity] = useState<number>(1)
   const subtotal: string = product?.price
-    ? (product.price * (existingQuantity + quantity)).toFixed(2)
-    : '0.00' //  undefined price
+    ? (product.price * quantity).toFixed(2) // Only multiply by input quantity
+    : '0.00'
 
   const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newQuantity = Math.max(1, parseInt(e.target.value) || 1)
     setQuantity(newQuantity)
   }
 
-  if (!product) {
-    return <div>Product not found</div>
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product, quantity)
+    }
   }
-
   return (
     <div className="product-detail-container">
       <div className="breadcrumbs">
@@ -75,7 +81,9 @@ function ProductDetail() {
           {existingQuantity > 0 && (
             <p className="in-cart">In Cart: {existingQuantity}</p>
           )}
-          <button className="add-to-cart-button">ADD TO CART</button>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            ADD TO CART
+          </button>
         </div>
       </div>
     </div>

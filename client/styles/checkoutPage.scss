@@ -174,3 +174,32 @@
     margin: 5px 0;
   }
 }
+//place order
+
+.place-order-section {
+  margin-top: 20px; 
+  // text-align: center; 
+}
+
+.review-order-details {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.place-order-button {
+  background-color: #007bff; 
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%; 
+  max-width: 300px; 
+  margin: 0 auto; 
+}
+
+.place-order-button:hover {
+  background-color: #0056b3;
+}

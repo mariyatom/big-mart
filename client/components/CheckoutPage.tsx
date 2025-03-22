@@ -56,6 +56,18 @@ const CheckoutPage = () => {
     setShowPayment(true)
   }
 
+  const handlePlaceOrder = () => {
+    // 1. Prepare order data
+    const orderData = {
+      customer,
+      payment,
+      cart,
+    }
+    // Implement order placement logic here
+    console.log('Order placed:', { customer, payment, cart })
+    // Navigate to order confirmation or thank you page
+    navigate('/order-confirmation', { state: { customer, payment, cart } })
+  }
   return (
     <div className="checkout-page">
       <a href="/" className="continue-browsing">
@@ -149,6 +161,121 @@ const CheckoutPage = () => {
             pick-up date, and you can inform us of the pick-up time.
           </p>
         </div>
+        {showPayment && (
+          <div className="payment-details">
+            {/* Payment details input fields */}
+            <h3>Payment Details</h3>
+            <label>Card number</label>
+            <input
+              type="text"
+              name="cardNumber"
+              placeholder="Enter number"
+              value={payment.cardNumber}
+              onChange={handlePaymentChange}
+            />
+            <label>Expiration date</label>
+            <input
+              type="text"
+              name="expiryDate"
+              placeholder="MM / YY"
+              value={payment.expiryDate}
+              onChange={handlePaymentChange}
+            />
+            <label>CVV/CVC</label>
+            <input
+              type="text"
+              name="cvv"
+              placeholder="3-4 digits"
+              value={payment.cvv}
+              onChange={handlePaymentChange}
+            />
+            <label>Cardholder name</label>
+            <input
+              type="text"
+              name="cardholderName"
+              placeholder="Enter full name"
+              value={payment.cardholderName}
+              onChange={handlePaymentChange}
+            />
+            <h3>Billing address</h3>
+            <label>First name</label>
+            <input
+              type="text"
+              name="billingFirstName"
+              placeholder="Enter first name"
+              value={payment.billingFirstName}
+              onChange={handlePaymentChange}
+            />
+            <label>Last name</label>
+            <input
+              type="text"
+              name="billingLastName"
+              placeholder="Enter last name"
+              value={payment.billingLastName}
+              onChange={handlePaymentChange}
+            />
+            <label>Phone</label>
+            <input
+              type="text"
+              name="billingPhone"
+              placeholder="Enter phone number"
+              value={payment.billingPhone}
+              onChange={handlePaymentChange}
+            />
+            <label>Country / Region</label>
+            <select
+              name="billingCountry"
+              value={payment.billingCountry}
+              onChange={handlePaymentChange}
+            >
+              <option value="New Zealand">New Zealand</option>
+              {/* Add more countries if needed */}
+            </select>
+            <label>Address</label>
+            <input
+              type="text"
+              name="billingAddress"
+              placeholder="Enter address"
+              value={payment.billingAddress}
+              onChange={handlePaymentChange}
+            />
+            <label>City</label>
+            <input
+              type="text"
+              name="billingCity"
+              placeholder="Enter city"
+              value={payment.billingCity}
+              onChange={handlePaymentChange}
+            />
+            <label>Region</label>
+            <select
+              name="billingRegion"
+              value={payment.billingRegion}
+              onChange={handlePaymentChange}
+            >
+              <option value="Auckland">Auckland</option>
+              {/* Add more regions if needed */}
+            </select>
+            <label>Zip / Postal code</label>
+            <input
+              type="text"
+              name="billingZip"
+              placeholder="Enter zip/postal code"
+              value={payment.billingZip}
+              onChange={handlePaymentChange}
+            />
+            <div className="place-order-section">
+              <div className="review-order-details">
+                Review & place order
+                <br />
+                Review your details above and continue when you're ready.
+              </div>
+              <button className="place-order-button" onClick={handlePlaceOrder}>
+                Place Order & Pay
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="order-summary">

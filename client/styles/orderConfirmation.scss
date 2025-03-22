@@ -1,0 +1,60 @@
+.order-confirmation {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.order-confirmation h1 {
+  color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.order-confirmation h2 {
+  color: #34495e;
+  font-size: 22px;
+  margin-top: 20px;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.order-confirmation p {
+  color: #555;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.order-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.order-items li {
+  background-color: #ecf0f1;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.order-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.order-button:hover {
+  background-color: #2980b9;
+}

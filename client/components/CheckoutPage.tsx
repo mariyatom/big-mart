@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import useCartStore from '../store/useCartStore'
 import '../styles/checkoutPage.scss'
 import { ChangeEvent, useState } from 'react'
+import { useSaveOrderDetails } from '../hooks/useOrders'
 
 const CheckoutPage = () => {
   const { cart } = useCartStore()
   const navigate = useNavigate()
+  const saveOrder = useSaveOrderDetails()
   const [showSummary, setShowSummary] = useState(false)
   const [showPayment, setShowPayment] = useState(false) // New state for payment details
 
@@ -16,14 +18,15 @@ const CheckoutPage = () => {
     lastName: '',
     phone: '',
     pickupTime: 'saturday-17-20',
+    comment: '',
   })
 
   //  payment card-form inputs
   const [payment, setPayment] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-    cardholderName: '',
+    cardNumber: '', // Don't save
+    expiryDate: '', // Don't save
+    cvv: '', // Don't save
+    cardholderName: '', // Don't save this data, but consider passing it to the Stripe gateway in the future.
     billingFirstName: '',
     billingLastName: '',
     billingPhone: '',
@@ -32,6 +35,7 @@ const CheckoutPage = () => {
     billingCity: '',
     billingRegion: 'Auckland',
     billingZip: '',
+    totalAmount: 0.0,
   })
 
   const calculateSubtotal = (): string => {
@@ -40,7 +44,7 @@ const CheckoutPage = () => {
       .toFixed(2)
   }
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setCustomer({ ...customer, [e.target.name]: e.target.value })
   }
@@ -52,21 +56,62 @@ const CheckoutPage = () => {
   }
 
   const handleContinue = () => {
+    if (
+      !customer.email ||
+      !customer.firstName ||
+      !customer.lastName ||
+      !customer.phone
+    ) {
+      alert('Please fill in all required fields.')
+      return
+    }
     setShowSummary(true)
     setShowPayment(true)
   }
 
-  const handlePlaceOrder = () => {
-    // 1. Prepare order data
+  const handlePlaceOrder = async () => {
+    if (
+      !customer.email ||
+      !customer.firstName ||
+      !customer.lastName ||
+      !customer.phone
+    ) {
+      alert('Please fill in all required fields.')
+      return
+    }
+
     const orderData = {
       customer,
-      payment,
+      payment: {
+        billingFirstName: payment.billingFirstName,
+        billingLastName: payment.billingLastName,
+        billingPhone: payment.billingPhone,
+        billingCountry: payment.billingCountry,
+        billingAddress: payment.billingAddress,
+        billingCity: payment.billingCity,
+        billingRegion: payment.billingRegion,
+        billingZip: payment.billingZip,
+        totalAmount: Number(calculateSubtotal()),
+      },
       cart,
     }
-    // Implement order placement logic here
-    console.log('Order placed:', { customer, payment, cart })
-    // Navigate to order confirmation or thank you page
-    navigate('/order-confirmation', { state: { customer, payment, cart } })
+
+    try {
+      console.log('Placing order:', orderData)
+      await saveOrder.mutateAsync(orderData, {
+        onSuccess: () => {
+          console.log('Order placed successfully:', orderData)
+          navigate('/order-confirmation', { state: orderData })
+        },
+        onError: (error) => {
+          console.error('Failed to place order:', error)
+          alert('Something went wrong. Please try again.')
+        },
+      })
+    } catch (error) {
+      console.error('Error placing order:', error)
+      alert('Something went wrong. Please try again.')
+    }
   }
   return (
     <div className="checkout-page">
@@ -125,6 +170,17 @@ const CheckoutPage = () => {
               <option value="friday-15-19">Friday (15:00-19:00)</option>
             </select>
 
+            {/* Additional Comments */}
+            <div className="additional-comments">
+              <p>Additional comments</p>
+              <textarea
+                name="comment"
+                placeholder="Special instruction for seller..."
+                value={customer.comment}
+                onChange={handleChange}
+              />
+            </div>
+
             <button className="continue-button" onClick={handleContinue}>
               Continue
             </button>
@@ -140,6 +196,7 @@ const CheckoutPage = () => {
             <p>
               Pickup Time: {customer.pickupTime.replace('-', ' ').toUpperCase()}
             </p>
+            <p>Special instruction: {customer.comment}</p>
           </div>
         )}
         {/* Delivery Method Section */}

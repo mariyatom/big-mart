@@ -49,6 +49,7 @@ const OrderConfirmation = () => {
   }
 
   const { customer, payment, cart } = state
+  console.log('order confirmation page cart', state)
 
   return (
     <div className="order-confirmation">

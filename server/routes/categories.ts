@@ -4,6 +4,7 @@ import * as db from '../db/index.ts'
 
 const router = Router()
 
+//http://localhost:3002/api/v1/categories
 router.get('/', async (req, res) => {
   try {
     const categories = await db.getAllCategories()

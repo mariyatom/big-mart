@@ -43,7 +43,8 @@ export async function seed(knex) {
       id: 6,
       category: 'SNACKS & BAKERY',
       link: '/snacks-bakery',
-      image: 'url',
+      image:
+        'https://homeland.net.nz/cdn/shop/files/snacks_and_bakery_image.png',
     },
     {
       id: 7,
@@ -70,7 +71,7 @@ export async function seed(knex) {
       id: 10,
       category: 'MISCELLANEOUS',
       link: '/miscellaneous',
-      image: 'url',
+      image: 'https://homeland.net.nz/cdn/shop/files/miscellaneous_image.png',
     },
     {
       id: 11,

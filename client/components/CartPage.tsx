@@ -122,12 +122,6 @@ function CartPage() {
               </div>
             </div>
           ))}
-
-          {/* Additional Comments */}
-          <div className="additional-comments">
-            <p>Additional comments</p>
-            <textarea placeholder="Special instruction for seller..." />
-          </div>
         </div>
 
         {/* Right - Order Summary */}

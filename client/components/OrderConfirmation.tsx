@@ -21,7 +21,8 @@ type Customer = {
 }
 
 type Payment = {
-  cardholderName: string
+  billingFirstName: string
+  billingLastName: string
   billingAddress: string
   billingCity: string
 }
@@ -65,7 +66,7 @@ const OrderConfirmation = () => {
       <p>Pickup Time: {customer.pickupTime.replace('-', ' ').toUpperCase()}</p>
 
       <h2>Payment Details</h2>
-      <p>Cardholder: {payment.cardholderName}</p>
+      <p>Name : {payment.billingFirstName + ' ' + payment.billingLastName}</p>
       <p>
         Billing Address: {payment.billingAddress}, {payment.billingCity}
       </p>

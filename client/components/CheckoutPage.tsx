@@ -101,6 +101,8 @@ const CheckoutPage = () => {
       await saveOrder.mutateAsync(orderData, {
         onSuccess: () => {
           console.log('Order placed successfully:', orderData)
+          // Empty the cart by resetting the cart state
+          useCartStore.getState().cart = []
           navigate('/order-confirmation', { state: orderData })
         },
         onError: (error) => {

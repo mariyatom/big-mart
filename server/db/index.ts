@@ -97,3 +97,13 @@ export async function saveOrder(
 
   return idObj.id
 }
+
+export async function searchProducts(searchTerm: string): Promise<Product[]> {
+  if (!searchTerm || searchTerm.trim().length === 0) {
+    throw new Error('Search term is required')
+  }
+  const products = await connection('product')
+    .where('name', 'like', `%${searchTerm}%`)
+    .select()
+  return products
+}

@@ -2,6 +2,8 @@ import { Router } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
 import * as db from '../db/index.ts'
+import { generateOrderEmail } from './emailTemplate.ts'
+import { sendOrderEmail } from './emailService.ts'
 
 const router = Router()
 
@@ -17,9 +19,7 @@ router.post('/', async (req, res, next) => {
 
   try {
     const customerId = await db.saveCustomers(customer)
-    console.log('customer id after db save on server', customerId)
     const paymentId = await db.savePaymentBillingDetails(payment)
-    console.log('payment id after db save on server', paymentId)
     if (!customerId || !paymentId) {
       return res
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -28,15 +28,12 @@ router.post('/', async (req, res, next) => {
 
     // Save cart and cart items
     const cartId = await db.saveToCart(customerId, payment.totalAmount)
-    console.log('cart id after db save on server', cartId)
     await db.saveCartItems(cartId, cart)
+    // Generate order summary content
+    const orderSummary = generateOrderEmail(customer, cart, payment.totalAmount)
 
-    const orderSummary = ''
-    // // Generate order summary content
-    // const orderSummary = generateOrderEmail(customer, cart, payment.totalAmount)
-
-    // // Send order confirmation email
-    // await sendOrderEmail(customer.email, orderSummary)
+    // Send order confirmation email
+    //await sendOrderEmail(customer.email, orderSummary)
 
     // Save the order
     const orderId = await db.saveOrder(

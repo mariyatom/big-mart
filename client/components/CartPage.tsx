@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react'
 import '../styles/cartPage.scss'
 import { Link } from 'react-router-dom'
 import useCartStore from '../store/useCartStore' // Zustand store
+import { FaTrash } from 'react-icons/fa'
 
 function CartPage() {
   const { cart, addToCart, removeFromCart } = useCartStore()
@@ -116,7 +117,7 @@ function CartPage() {
                     className="remove-item"
                     onClick={() => handleRemoveItem(item.product.id)}
                   >
-                    ×
+                    <FaTrash />
                   </button>
                 </div>
               </div>

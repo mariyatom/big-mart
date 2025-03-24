@@ -65,7 +65,7 @@
 .cart-item-row {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 50px;
 }
 
 .cart-item-price,
@@ -73,22 +73,35 @@
   font-weight: bold;
 }
 
+.cart-item-total::before {
+  content: "Total: ";
+  font-weight: bold;
+}
+
 .quantity-dropdown {
-  padding: 5px;
+  padding: 4px;
   border: 1px solid #ddd;
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px;
 }
 
 /* Remove Item Button */
+
+
 .remove-item {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
-  color: red;
+  color: #ff7d00;
+  padding: 8px; /* Increase padding for better clickability */
 }
 
 .remove-item:hover {
-  color: darkred;
+  color: #e17005;
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 /* Additional Comments */

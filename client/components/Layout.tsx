@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from './Carousel'
+import AboutUs from './AboutUs'
 
 function Layout() {
   const images = [
@@ -10,6 +11,7 @@ function Layout() {
   return (
     <div>
       <Carousel images={images} />
+      <AboutUs />
     </div>
   )
 }

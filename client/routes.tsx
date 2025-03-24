@@ -9,6 +9,7 @@ import CategoryProducts from './components/CategoryProducts'
 import CartPage from './components/CartPage'
 import CheckoutPage from './components/CheckoutPage'
 import OrderConfirmation from './components/OrderConfirmation'
+import SearchResult from './components/searchResult'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
@@ -20,6 +21,7 @@ const routes = createRoutesFromElements(
     <Route path="/cart" element={<CartPage />} />
     <Route path="/checkout" element={<CheckoutPage />} />
     <Route path="/order-confirmation" element={<OrderConfirmation />} />
+    <Route path="/search-result" element={<SearchResult />} />
     {/* Add the new route */}
   </Route>
 )

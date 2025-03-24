@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import { Category } from '../../models/category'
 import { useCategories } from '../hooks/useCategories'
-import { useProducts } from '../hooks/useProducts' // Import useProducts hook
-import { useCartStore } from '../store/useCartStore' // Zustand store
+import { useProducts } from '../hooks/useProducts'
+import { useCartStore } from '../store/useCartStore'
 import ErrorMessage from './ErrorMessage'
+import FilterSidebar from './FilterSidebar'
 import LoadingIndicator from './LoadingIndicator'
 import ProductsByCategory from './ProductsByCategory'
 
 function ProductsList() {
-  const addToCart = useCartStore((state) => state.addToCart) // Zustand function
+  const addToCart = useCartStore((state) => state.addToCart)
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]) // ⬅️ Store selected categories
 
   // Fetch categories
   const {
@@ -25,41 +28,54 @@ function ProductsList() {
     error: productsErrorMessage,
   } = useProducts()
 
-  // Handle Loading State
   if (categoriesLoading || productsLoading) {
     return <LoadingIndicator />
   }
 
-  // Handle Error State
   if (categoriesError || productsError) {
     return (
       <ErrorMessage error={categoriesErrorMessage || productsErrorMessage} />
     )
   }
 
-  // Extract data
   const categories = categoriesData?.categories ?? []
   const products = productsData?.products ?? []
 
-  // Filter products by category
+  // ✅ **Filter categories based on selected checkboxes**
+  const filteredCategories =
+    selectedCategories.length > 0
+      ? categories.filter((category) =>
+          selectedCategories.includes(category.category)
+        )
+      : categories
+
+  // ✅ **Filter products by selected category**
   const filterProductsByCategory = (categoryId: number) => {
     return products.filter((product) => product.category_id === categoryId)
   }
 
   return (
     <div className="products-container">
-      {categories.length > 0 ? (
-        categories.map((category: Category) => (
-          <ProductsByCategory
-            key={category.id}
-            category={category}
-            filteredProducts={filterProductsByCategory(category.id)}
-            addToCart={addToCart} // Use Zustand function
-          />
-        ))
-      ) : (
-        <p>No categories available.</p>
-      )}
+      <aside className="sidebar">
+        <FilterSidebar
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories} // ✅ Pass state to FilterSidebar
+        />
+      </aside>
+      <main className="products">
+        {filteredCategories.length > 0 ? (
+          filteredCategories.map((category: Category) => (
+            <ProductsByCategory
+              key={category.id}
+              category={category}
+              filteredProducts={filterProductsByCategory(category.id)}
+              addToCart={addToCart}
+            />
+          ))
+        ) : (
+          <p>No products available for selected categories.</p>
+        )}
+      </main>
     </div>
   )
 }

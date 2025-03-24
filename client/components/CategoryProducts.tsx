@@ -65,11 +65,13 @@ function CategoryProducts() {
       <div className="product-grid">
         {filteredProducts.map((product) => (
           <div key={product.id} className="product-card">
-            <img
-              className="product-image"
-              src={product.image}
-              alt={product.name}
-            />
+            <div className="image-container">
+              <img
+                className="product-image"
+                src={product.image}
+                alt={product.name}
+              />
+            </div>
             <div className="product-info">
               <h2 className="product-name">{product.name}</h2>
               <p className="product-description">{product.description}</p>

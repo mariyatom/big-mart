@@ -61,12 +61,13 @@ body {
 .cart-count {
   position: absolute;
   top: -8px;
-  right: -8px;
-  background-color: #333; /* Dark background for count */
-  color: #ffcc00; /* Yellow color for count text */
+  right: -12px;
+  background-color: #276f1e;
+  color: #ffffff;
   border-radius: 50%;
-  padding: 4px 6px;
-  font-size: 12px;
+  padding: 1px 4px;
+  font-size: 16px;
+  font-weight: 900;
 }
 /** errors */
 .error-message {

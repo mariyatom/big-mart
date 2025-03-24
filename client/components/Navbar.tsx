@@ -78,15 +78,15 @@ function Navbar() {
 
         {/* Right Side Icons */}
         <div className="nav-right">
-          <SearchBar />
-          <div className="user-icon nav-item">
-            <FontAwesomeIcon icon={faUser} />
-          </div>
           <div className="cart-icon nav-item" onClick={handleCartClick}>
             <FontAwesomeIcon icon={faShoppingCart} />
             <span className="cart-count">{totalCartQuantity}</span>
             {/* Show cart count */}
           </div>
+          <div className="user-icon nav-item">
+            <FontAwesomeIcon icon={faUser} />
+          </div>
+          <SearchBar />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import connection from './connection.ts'
 import { Fruit } from '../../models/fruit.ts'
-import { Category } from '../../models/category.ts'
-import { Product } from '../../models/product.ts'
+import { Category, CategoryData } from '../../models/category.ts'
+import { Product, ProductData } from '../../models/product.ts'
 import { CustomerData } from '../../models/customer.ts'
 import { PaymentData } from '../../models/payment.ts'
 
@@ -13,7 +13,16 @@ export async function getAllCategories(): Promise<Category[]> {
   return await connection('category').select('*')
 }
 export async function getAllProducts(): Promise<Product[]> {
-  return await connection('product').select('*')
+  return await connection('product').select(
+    'product.id',
+    'product.name',
+    'product.price',
+    'product.currency',
+    'product.image',
+    'product.description',
+    'product.category_id as categoryId',
+    'product.location'
+  )
 }
 
 export async function saveCustomers(
@@ -106,4 +115,33 @@ export async function searchProducts(searchTerm: string): Promise<Product[]> {
     .where('name', 'like', `%${searchTerm}%`)
     .select()
   return products
+}
+
+//  for admin's content management system
+
+export async function addNewCategory(
+  categoryData: CategoryData
+): Promise<number> {
+  const idResult = await connection('category')
+    .insert({
+      categoryData,
+    })
+    .returning('id')
+  const { id } = idResult[0]
+  return id
+}
+
+export async function addNewProduct(productData: ProductData): Promise<number> {
+  const [idObj] = await connection('product')
+    .insert({
+      name: productData.name,
+      price: productData.price,
+      currency: productData.currency,
+      image: productData.image,
+      description: productData.description,
+      category_id: productData.categoryId,
+      location: productData.location,
+    })
+    .returning('id')
+  return idObj.id
 }

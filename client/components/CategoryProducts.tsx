@@ -44,7 +44,7 @@ function CategoryProducts() {
   // Filter products by category ID
   const filteredProducts =
     productData?.products.filter(
-      (product) => product.category_id === category.id
+      (product) => product.categoryId === category.id
     ) || []
 
   return (

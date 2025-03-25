@@ -19,3 +19,12 @@ router.get('/', async (req, res) => {
 })
 
 export default router
+
+// used for admin's content management system
+
+router.post('/', async (req, res, next) => {
+  try {
+  } catch (e) {
+    next(e)
+  }
+})

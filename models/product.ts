@@ -1,10 +1,12 @@
-export interface Product {
-  id: number
+export interface ProductData {
   name: string
   price: number
   currency: string
   image: string
   description: string
-  category_id: number
+  categoryId: number
   location: string
+}
+export interface Product extends ProductData {
+  id: number
 }

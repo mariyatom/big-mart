@@ -51,7 +51,7 @@ function ProductsList() {
 
   // ✅ **Filter products by selected category**
   const filterProductsByCategory = (categoryId: number) => {
-    return products.filter((product) => product.category_id === categoryId)
+    return products.filter((product) => product.categoryId === categoryId)
   }
 
   return (

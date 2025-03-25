@@ -14,14 +14,14 @@ export async function getAllCategories(): Promise<Category[]> {
 }
 export async function getAllProducts(): Promise<Product[]> {
   return await connection('product').select(
-    'product.id',
-    'product.name',
-    'product.price',
-    'product.currency',
-    'product.image',
-    'product.description',
-    'product.category_id as categoryId',
-    'product.location'
+    'id',
+    'name',
+    'price',
+    'currency',
+    'image',
+    'description',
+    'category_id as categoryId',
+    'location'
   )
 }
 
@@ -123,9 +123,7 @@ export async function addNewCategory(
   categoryData: CategoryData
 ): Promise<number> {
   const idResult = await connection('category')
-    .insert({
-      categoryData,
-    })
+    .insert(categoryData)
     .returning('id')
   const { id } = idResult[0]
   return id

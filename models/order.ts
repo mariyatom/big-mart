@@ -14,3 +14,11 @@ export interface OrderData {
     quantity: number
   }[]
 }
+
+export interface OrderHistory {
+  orderId: number
+  orderDateTime: string
+  customerName: string
+  customerPhone: string
+  customerEmail: string
+}

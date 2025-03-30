@@ -1,20 +1,7 @@
-import { OrderData } from './../../models/order'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { OrderData, OrderHistory } from './../../models/order'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import request from 'superagent'
-
-// export function useCreateMovie() {
-//   const queryClient = useQueryClient()
-//   return useMutation({
-//     async mutationFn(data: MovieData) {
-//       const res = await request.post('/api/v1/movies').send(data)
-//       return res.body as { id: number }
-//     },
-
-//     onSuccess() {
-//       queryClient.invalidateQueries({ queryKey: ['movies'] })
-//     },
-//   })
-// }
+import * as api from '../apis/apiClient'
 
 export function useSaveOrderDetails() {
   const queryClient = useQueryClient()
@@ -27,6 +14,19 @@ export function useSaveOrderDetails() {
 
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['orders'] })
+    },
+  })
+}
+
+//admin-cms
+
+export function useOrderHistory() {
+  return useQuery<OrderHistory[]>({
+    queryKey: ['ordersHistory'],
+    queryFn: async () => {
+      const orderHist = await api.getOrderHistory()
+      if (!orderHist) throw new Error('Order History not found')
+      return orderHist
     },
   })
 }

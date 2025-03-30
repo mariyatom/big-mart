@@ -50,4 +50,33 @@ router.post('/', async (req, res, next) => {
     next(e)
   }
 })
+
+// cms- admin order history
+
+// http://localhost:3002/api/v1/orders/order-history/
+router.get('/order-history', async (req, res, next) => {
+  try {
+    const ordersOverview = await db.getAllOrderOverviewWithCustomerEmail()
+    res.status(StatusCodes.OK).json(ordersOverview)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET route for fetching order details by ID,
+//http://localhost:3002/api/v1/orders/12
+
+router.get('/:orderId', async (req, res, next) => {
+  const orderId = parseInt(req.params.orderId, 10)
+  if (isNaN(orderId)) {
+    return res.status(StatusCodes.BAD_REQUEST).send('Invalid order ID')
+  }
+  try {
+    const orderDetails = await db.getOrderDetails(orderId)
+    res.status(StatusCodes.OK).json(orderDetails)
+  } catch (error) {
+    next(error)
+  }
+})
+
 export default router

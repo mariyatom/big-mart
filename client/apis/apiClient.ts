@@ -1,8 +1,10 @@
+import { OrderHistory } from '../../models/order'
 import { Category, CategoryData } from './../../models/category'
 import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
+// admin- cms
 // GET /api/v1/categories/:id
 
 export async function getCategoryDataById(
@@ -16,6 +18,22 @@ export async function getCategoryDataById(
     if (error instanceof Error) {
       throw new Error(error.message)
     }
+    throw new Error(
+      'An unknown error occurred while fetching category Data by id'
+    )
+  }
+}
+
+export async function getOrderHistory(): Promise<OrderHistory[]> {
+  try {
+    const response = await request.get(`${rootUrl}/orders/order-history`)
+
+    return response.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+    throw new Error('An unknown error occurred while fetching order history')
   }
 }
 

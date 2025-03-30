@@ -4,6 +4,7 @@ import { Category, CategoryData } from '../../models/category.ts'
 import { Product, ProductData } from '../../models/product.ts'
 import { CustomerData } from '../../models/customer.ts'
 import { PaymentData } from '../../models/payment.ts'
+import { OrderHistory } from '../../models/order.ts'
 
 export async function getAllFruits(db = connection): Promise<Fruit[]> {
   return db('fruit').select()
@@ -157,4 +158,62 @@ export async function updateCategory(
 
 export async function deleteCategory(id: number): Promise<number> {
   return await connection('category').where({ id }).del()
+}
+
+//in progress for order-history
+export async function getOrderDetails(orderId: number) {
+  return connection('order')
+    .join('customer', 'order.customer_id', 'customer.id')
+    .join('payment', 'order.payment_id', 'payment.id')
+    .join('cart', 'order.cart_id', 'cart.id')
+    .leftJoin('cart_item', 'cart.id', 'cart_item.cart_id')
+    .leftJoin('product', 'cart_item.product_id', 'product.id')
+    .select(
+      'order.id as order_id',
+      'order.created_at as order_date_time',
+      'order.order_email',
+      'customer.first_name as customer_first_name',
+      'customer.last_name as customer_last_name',
+      'customer.phone as customer_phone',
+      'customer.email as customer_email',
+      'customer.pickup_time',
+      'customer.comment',
+      'payment.first_name as billing_first_name',
+      'payment.last_name as billing_last_name',
+      'payment.address as billing_address',
+      'payment.city as billing_city',
+      'payment.region as billing_region',
+      'payment.zip as billing_zip',
+      'payment.country as billing_country',
+      'payment.total_amount as total_paid',
+      'cart.id as cart_id',
+      'cart.total as cart_total',
+      'cart.created_at as cart_created_at',
+      'cart.updated_at as cart_updated_at',
+      'cart_item.product_id',
+      'product.name as product_name',
+      'product.price as product_unit_price',
+      'cart_item.quantity as product_quantity'
+    )
+    .where('order.id', orderId)
+    .orderBy('order.id')
+    .orderBy('cart_item.id')
+}
+
+// inprogress 2
+export async function getAllOrderOverviewWithCustomerEmail(): Promise<
+  OrderHistory[]
+> {
+  return connection('order')
+    .join('customer', 'order.customer_id', 'customer.id')
+    .select(
+      'order.id as orderId',
+      'order.created_at as orderDateTime',
+      connection.raw(
+        "customer.first_name || ' ' || customer.last_name as customerName"
+      ),
+      'customer.phone as customerPhone',
+      'customer.email as customerEmail'
+    )
+    .orderBy('order.created_at', 'desc')
 }

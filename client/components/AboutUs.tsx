@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import shoppingCart from '../assets/shopping.png' // Adjust path as needed
 import '../styles/AboutUs.scss'
 
@@ -12,7 +13,7 @@ const AboutUs = () => {
 
       {/* Right - Text Section */}
       <div className="text-container">
-        <h3 className="about-subtitle">About us</h3>
+        {/* <h3 className="about-subtitle">About us</h3> */}
         <h2 className="about-title">
           We Provide You The <span className="highlight">Best Experience</span>
         </h2>
@@ -24,10 +25,16 @@ const AboutUs = () => {
           sweets, all directly sourced from India.
         </p>
         <p>
-          At Homeland Indian Mart, we are dedicated to ensuring you experience
-          the true essence of Indian cuisine. Our knowledgeable and friendly
-          staff will assist you in finding the finest ingredients for your
-          recipes.
+          At Big Mart, we are dedicated to ensuring you experience the true
+          essence of Indian cuisine. Our knowledgeable and friendly staff will
+          assist you in finding the finest ingredients for your recipes.
+        </p>
+        <p>
+          In addition to our grocery selection, we also offer a{' '}
+          <Link to="/cms">Content Management System (CMS)</Link> to help
+          businesses manage and streamline their digital content effortlessly.
+          Would you like to visit and explore how our CMS can enhance your
+          online presence?
         </p>
       </div>
     </section>

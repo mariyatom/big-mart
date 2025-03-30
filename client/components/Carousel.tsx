@@ -19,7 +19,7 @@ const Carousel = ({ images }: CarouselProps) => {
   }
 
   return (
-    <div className="carouselContainer">
+    <div className="carouselContainer parallax">
       <button className="prev carousel-btn" onClick={prevSlide}>
         &#10094;
       </button>

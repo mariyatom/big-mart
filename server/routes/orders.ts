@@ -42,15 +42,10 @@ router.post('/', async (req, res, next) => {
       cartId,
       orderSummary
     )
-    console.log('cart id after db save on server', orderId)
-    console.log(orderId)
+    // console.log('cart id after db save on server', orderId)
+    // console.log(orderId)
 
     res.status(StatusCodes.CREATED).json({ orderId })
-    // const id = await db.create({ title, release_year })
-    // res
-    //   .setHeader('Location', `/api/v1/movies/${id}`)
-    //   .status(StatusCodes.CREATED)
-    //   .json({ id, title, release_year })
   } catch (e) {
     next(e)
   }

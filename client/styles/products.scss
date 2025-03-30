@@ -73,6 +73,12 @@
   gap: 10px;
   margin: 10px 0;
 }
+.shoppingCartIcon{
+  display: flex;
+    align-items: center;
+    margin-left: 15px;
+    color: #fdc800;
+}
 
 .quantity-input {
   width: 50px;
@@ -107,9 +113,18 @@
 }
 /* Responsive media queries */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
   .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    grid-template-columns: repeat(3, 1fr); /* 2 cards per row */
+  }
+
+
+}
+@media screen and (max-width: 950px) {
+
+
+  .products-grid{
+    grid-template-columns: repeat(2, 1fr);
   }
 
 

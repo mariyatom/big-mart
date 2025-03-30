@@ -7,20 +7,20 @@ type CartItem = {
   quantity: number
 }
 
-type BearStore = {
-  bears: number
-  addABear: () => void
+type CartStore = {
+  count: number
+  addACart: () => void
   cart: CartItem[]
   addToCart: (product: Product, quantity: number) => void
   removeFromCart: (productId: number) => void
   cartTotalQuantity: () => number
 }
 
-export const useCartStore = create<BearStore>()(
+export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
-      bears: 0,
-      addABear: () => set((state) => ({ bears: state.bears + 1 })),
+      count: 0,
+      addACart: () => set((state) => ({ count: state.count + 1 })),
       cart: [],
       addToCart: (product: Product, quantity: number) => {
         set((state) => {

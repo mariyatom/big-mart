@@ -9,6 +9,8 @@ import ErrorMessage from './ErrorMessage'
 import LoadingIndicator from './LoadingIndicator'
 import Breadcrumbs from './Breadcrumbs'
 import ProductImages from './ProductImages'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function ProductDetail() {
   const { productName } = useParams() // Get product name from URL
@@ -72,7 +74,9 @@ function ProductDetail() {
             />
           </div>
           {existingQuantity > 0 && (
-            <p className="in-cart">In Cart: {existingQuantity}</p>
+            <p className="in-cart">
+              <FontAwesomeIcon icon={faShoppingCart} />: {existingQuantity}
+            </p>
           )}
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             ADD TO CART

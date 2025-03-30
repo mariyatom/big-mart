@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Product } from '../../models/product'
 import { Link } from 'react-router-dom' // Import Link
 import { useCartStore } from '../store/useCartStore' // Import Zustand store
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface ProductCardProps {
   product: Product
@@ -47,7 +49,12 @@ const ProductCard = ({ product, addToCart }: ProductCardProps) => {
           min="1"
           className="quantity-input"
         />
-        {existingQuantity > 0 && <p>In Cart: {existingQuantity}</p>}
+        {existingQuantity > 0 && (
+          <p className="shoppingCartIcon">
+            {' '}
+            <FontAwesomeIcon icon={faShoppingCart} />: {existingQuantity}
+          </p>
+        )}
       </div>
       <p className="subtotal">
         Subtotal: {product.currency} {subtotal}

@@ -143,3 +143,18 @@ export async function addNewProduct(productData: ProductData): Promise<number> {
     .returning('id')
   return idObj.id
 }
+
+export async function getCategoriesById(id: number): Promise<Category> {
+  return await connection('category').select('*').where('id', id).first()
+}
+
+export async function updateCategory(
+  id: number,
+  updateCategory: Partial<CategoryData>
+): Promise<number | null> {
+  return await connection('category').where({ id }).update(updateCategory)
+}
+
+export async function deleteCategory(id: number): Promise<number> {
+  return await connection('category').where({ id }).del()
+}

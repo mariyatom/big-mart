@@ -1,0 +1,73 @@
+/* adminCategory.scss */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #575555; 
+  color: #fff; 
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #DDD;
+}
+
+th {
+  background-color: #444; 
+}
+
+tr:hover {
+  background-color: #555; 
+}
+
+img.cateImage {
+  width: 8%;
+  height: auto;
+}
+
+button {
+  background-color: #555;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #777;
+}
+
+/* Styling the edit and delete buttons */
+.edit-button, .delete-button, .new-button {
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.edit-button {
+  color: #4CAF50; 
+}
+
+.delete-button {
+  color: #f44336; 
+}
+
+/* To give a pencil icon as edit */
+.edit-button::before {
+  content: '\270E';
+  margin-right: 5px;
+}
+
+.delete-button::before {
+  content: '\1F5D1'; 
+  margin-right: 5px;
+}
+.new-button {
+  float: right;
+  margin-bottom: 20px;
+  width: 11%;
+  background-color: darkcyan;
+}

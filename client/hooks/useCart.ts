@@ -2,7 +2,8 @@
 
 // 1. useQuery to get cartData
 // NOTE: will need to make a backend database for cartData and connect to it.
-// In order to create a unique cartData record in the database, your database query for "AddToCart", will need to return the id for you to use on the client side.
+// In order to create a unique cartData record in the database, your database query for "AddToCart",
+//  will need to return the id for you to use on the client side.
 
 // 2. useMutation to add new items and quanitites to the cartData record by cartId
 

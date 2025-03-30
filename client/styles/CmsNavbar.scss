@@ -1,0 +1,150 @@
+/* CmsNavbar.scss */
+.vertical-nav-project {
+  display: flex;
+  min-height: 100vh;
+}
+.logout {
+  padding: 6px;
+  margin: 1px;
+}
+.top-navbar {
+  background-color: #0a5656;//purple
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+
+  .project-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.sidebarCms {
+  background-color: #333;
+  color: #ccc;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding-top: 60px; /* Account for top navbar */
+  overflow-x: hidden;
+  transition: width 0.3s ease-in-out;
+  z-index: 9;
+
+  .toggle-button {
+    background-color: #444;
+    color: #ccc;
+    padding: 15px;
+    text-align: right;
+    cursor: pointer;
+    display: none; /* Hidden on larger screens */
+  }
+
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li a {
+      display: flex;
+      align-items: center;
+      color: #ccc;
+      padding: 15px 20px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+
+      svg {
+        margin-right: 10px;
+        font-size: 1.2em;
+      }
+
+      span {
+        flex-grow: 1;
+      }
+
+      &:hover {
+        background-color: #555;
+        color: white;
+      }
+    }
+  }
+
+  &.collapsed {
+    width: 60px;
+
+    .nav-links li a span {
+      display: none;
+    }
+
+    .nav-links li a {
+      justify-content: center;
+    }
+  }
+}
+
+.main-content {
+  background-color: #d7d3d3;
+  flex-grow: 1;
+  padding: 80px 20px 20px 270px;
+  transition: margin-left 0.3s ease-in-out;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.main-content.collapsed {
+  padding-left: 80px;
+}
+
+@media (max-width: 768px) {
+  .sidebarCms {
+    width: 0;
+    overflow-x: hidden;
+    &.collapsed {
+      width: 200px;
+    }
+    .toggle-button {
+      display: block;
+      text-align: left;
+    }
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: auto; 
+    border-right: 1px solid #444;
+  }
+
+  .main-content {
+    background-color: #d7d3d3;
+    padding-left: 20px;
+    padding-top: 120px; 
+    &.collapsed {
+      padding-left: 220px; 
+    }
+  }
+}

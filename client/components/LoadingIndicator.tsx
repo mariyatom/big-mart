@@ -1,6 +1,10 @@
 export default function LoadingIndicator() {
   return (
-    <div aria-label="Loading..." className="loading-indicator">
+    <div
+      data-testid="loading-indicator"
+      aria-label="Loading..."
+      className="loading-indicator"
+    >
       <img
         src="client\assets\loading-gif.gif" // Adjusted for public folder
         alt="Loading..."

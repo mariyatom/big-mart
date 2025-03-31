@@ -13,6 +13,7 @@ type CartStore = {
   cart: CartItem[]
   addToCart: (product: Product, quantity: number) => void
   removeFromCart: (productId: number) => void
+  clearCart: () => void
   cartTotalQuantity: () => number
 }
 
@@ -42,6 +43,7 @@ export const useCartStore = create<CartStore>()(
           cart: state.cart.filter((item) => item.product.id !== productId),
         }))
       },
+      clearCart: () => set({ cart: [] }),
       cartTotalQuantity: () => {
         return get().cart.reduce((total, item) => total + item.quantity, 0)
       },

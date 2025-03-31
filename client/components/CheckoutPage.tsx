@@ -102,7 +102,8 @@ const CheckoutPage = () => {
         onSuccess: () => {
           console.log('Order placed successfully:', orderData)
           // Empty the cart by resetting the cart state
-          useCartStore.getState().cart = []
+          //useCartStore.getState().cart = []
+          useCartStore.getState().clearCart()
           navigate('/order-confirmation', { state: orderData })
         },
         onError: (error) => {

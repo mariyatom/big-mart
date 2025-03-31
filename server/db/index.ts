@@ -67,10 +67,13 @@ export async function saveToCart(
   customerId: number,
   totalAmount: number
 ): Promise<number> {
+  const now = new Date()
   const [idObj] = await connection('cart')
     .insert({
       customer_id: customerId,
       total: totalAmount,
+      created_at: now,
+      updated_at: now,
     })
     .returning('id')
 
@@ -81,10 +84,13 @@ export async function saveCartItems(
   cartId: number,
   cartItems: any[]
 ): Promise<void> {
+  const now = new Date()
   const items = cartItems.map((item) => ({
     cart_id: cartId,
     product_id: item.product.id,
     quantity: item.quantity,
+    created_at: now,
+    updated_at: now,
   }))
 
   await connection('cart_item').insert(items)
@@ -96,12 +102,16 @@ export async function saveOrder(
   cartId: number,
   orderEmail: string
 ): Promise<number> {
+  const now = new Date()
+
   const [idObj] = await connection('order')
     .insert({
       customer_id: customerId,
       payment_id: paymentId,
       cart_id: cartId,
       order_email: orderEmail,
+      created_at: now,
+      updated_at: now,
     })
     .returning('id')
 
@@ -200,12 +210,11 @@ export async function getOrderDetails(
       'cart_item.quantity as cartQuantity'
     )
     .where('order.id', orderId)
-    .orderBy('order.id')
+    .orderBy('order.id', 'desc')
     .orderBy('cart_item.id')
 
   if (!result.length) return undefined // Return undefined if no order is found
 
-  // Extract common order details (same for all products)
   const {
     orderId: id,
     orderDateTime,

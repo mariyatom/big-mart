@@ -40,7 +40,8 @@ router.post('/', async (req, res, next) => {
       customerId,
       paymentId,
       cartId,
-      orderSummary
+      orderSummary,
+      
     )
     // console.log('cart id after db save on server', orderId)
     // console.log(orderId)

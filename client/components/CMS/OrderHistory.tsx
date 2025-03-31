@@ -40,7 +40,8 @@ function OrderHistory() {
           {orderHistory?.map((orderHist, index) => (
             <tr key={orderHist.orderId}>
               <td>{index + 1}</td>
-              <td>{orderHist.orderDateTime}</td>
+
+              <td> {new Date(orderHist.orderDateTime).toLocaleString()}</td>
               <td>{orderHist.customerName}</td>
               <td>{orderHist.customerPhone}</td>
               <td>{orderHist.customerEmail}</td>

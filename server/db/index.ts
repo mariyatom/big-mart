@@ -4,7 +4,7 @@ import { Category, CategoryData } from '../../models/category.ts'
 import { Product, ProductData } from '../../models/product.ts'
 import { CustomerData } from '../../models/customer.ts'
 import { PaymentData } from '../../models/payment.ts'
-import { OrderHistory } from '../../models/order.ts'
+import { OrderDetail, OrderHistory } from '../../models/order.ts'
 
 export async function getAllFruits(db = connection): Promise<Fruit[]> {
   return db('fruit').select()
@@ -161,46 +161,105 @@ export async function deleteCategory(id: number): Promise<number> {
 }
 
 //in progress for order-history
-export async function getOrderDetails(orderId: number) {
-  return connection('order')
+export async function getOrderDetails(
+  orderId: number
+): Promise<OrderDetail | undefined> {
+  const result = await connection('order')
     .join('customer', 'order.customer_id', 'customer.id')
     .join('payment', 'order.payment_id', 'payment.id')
     .join('cart', 'order.cart_id', 'cart.id')
     .leftJoin('cart_item', 'cart.id', 'cart_item.cart_id')
     .leftJoin('product', 'cart_item.product_id', 'product.id')
     .select(
-      'order.id as order_id',
-      'order.created_at as order_date_time',
-      'order.order_email',
-      'customer.first_name as customer_first_name',
-      'customer.last_name as customer_last_name',
-      'customer.phone as customer_phone',
-      'customer.email as customer_email',
-      'customer.pickup_time',
-      'customer.comment',
-      'payment.first_name as billing_first_name',
-      'payment.last_name as billing_last_name',
-      'payment.address as billing_address',
-      'payment.city as billing_city',
-      'payment.region as billing_region',
-      'payment.zip as billing_zip',
-      'payment.country as billing_country',
-      'payment.total_amount as total_paid',
-      'cart.id as cart_id',
-      'cart.total as cart_total',
-      'cart.created_at as cart_created_at',
-      'cart.updated_at as cart_updated_at',
-      'cart_item.product_id',
-      'product.name as product_name',
-      'product.price as product_unit_price',
-      'cart_item.quantity as product_quantity'
+      'order.id as orderId',
+      'order.created_at as orderDateTime',
+      'order.order_email as orderEmail',
+      connection.raw(
+        "customer.first_name || ' ' || customer.last_name as customerName"
+      ),
+      'customer.phone as customerPhone',
+      'customer.email as customerEmail',
+      'customer.pickup_time as pickupTime',
+      'customer.comment as comment',
+      connection.raw(
+        "payment.first_name || ' ' || payment.last_name as billingName"
+      ),
+      'payment.address as billingAddress',
+      'payment.city as billingCity',
+      'payment.region as billingRegion',
+      'payment.zip as billingZip',
+      'payment.country as billingCountry',
+      'payment.total_amount as totalPaid',
+      'cart.id as cartId',
+      'cart.total as cartTotal',
+      'cart.created_at as cartCreated',
+      'cart.updated_at as cartUpdated',
+      'cart_item.product_id as productId',
+      'product.name as productName',
+      'product.price as productUnitPrice',
+      'cart_item.quantity as cartQuantity'
     )
     .where('order.id', orderId)
     .orderBy('order.id')
     .orderBy('cart_item.id')
+
+  if (!result.length) return undefined // Return undefined if no order is found
+
+  // Extract common order details (same for all products)
+  const {
+    orderId: id,
+    orderDateTime,
+    orderEmail,
+    customerName,
+    customerPhone,
+    customerEmail,
+    pickupTime,
+    comment,
+    billingName,
+    billingAddress,
+    billingCity,
+    billingRegion,
+    billingZip,
+    billingCountry,
+    totalPaid,
+    cartId,
+    cartTotal,
+    cartCreated,
+    cartUpdated,
+  } = result[0]
+
+  // Format product details
+  const products = result.map((row) => ({
+    productId: row.productId,
+    productName: row.productName,
+    productUnitPrice: row.productUnitPrice,
+    productQuantity: row.cartQuantity,
+  }))
+
+  return {
+    orderId: id,
+    orderDateTime,
+    orderEmail,
+    customerName,
+    customerPhone,
+    customerEmail,
+    pickupTime,
+    comment,
+    billingName,
+    billingAddress,
+    billingCity,
+    billingRegion,
+    billingZip,
+    billingCountry,
+    totalPaid,
+    cartId,
+    cartTotal,
+    cartCreated,
+    cartUpdated,
+    products,
+  }
 }
 
-// inprogress 2
 export async function getAllOrderOverviewWithCustomerEmail(): Promise<
   OrderHistory[]
 > {

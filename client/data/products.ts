@@ -8,7 +8,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/69_360x.png?v=1707078567',
     description: 'India Gate Basmati-Feast Rozanna',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
 
@@ -19,7 +19,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/pavi_360x.jpg?v=1691930295',
     description: 'Pavizham Matta Rice 10 Kg',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -30,7 +30,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/download_360x.jpg?v=1691910072',
     description: 'Mayil Matta Rice 10 Kg',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -40,7 +40,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/bra_360x.jpg?v=1691932589',
     description: 'Brahmins Puttupodi 1Kg',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -50,7 +50,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/46_360x.png?v=1703699017',
     description: 'Ajmi Rice Flakes Thick 400g',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -60,7 +60,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/ro_360x.jpg?v=1691935048',
     description: 'Double Horse Roasted White Rice Flour 1kG',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -70,7 +70,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/aj_360x.jpg?v=1691930783',
     description: 'Ajmi Rice Powder 1 Kg',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -80,7 +80,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/patho_360x.jpg?v=1691934132',
     description: 'Double Horse Appam Idiyappam Pathiri Rice...',
-    category_id: 1,
+    categoryId: 1,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -90,7 +90,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/70_360x.png?v=1707079363',
     description: 'Ammamma Garlic Pickle 500g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -100,7 +100,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/mj_540x.jpg?v=1692027014',
     description: 'Ammamas Mango Pickle 500g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -111,7 +111,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/AmmamaMango_540x.png?v=1702519276',
     description: 'Ammamas Gooseberry Pickle 500g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -121,7 +121,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/pul_540x.jpg?v=1692025512',
     description: 'Kitchen Treasures Puli Inji Pickle 400g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -131,7 +131,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/42_540x.png?v=1703698469',
     description: 'Ajmi Kadu Mango Pickle 400g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -142,7 +142,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/Brahminschutney_540x.png?v=1702520508',
     description: 'Brahmins Chutney Powder 100g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -153,7 +153,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/AmmamaLime_540x.png?v=1702519699',
     description: 'Ammamas Lime Pickle 500g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -163,7 +163,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/c_540x.jpg?v=1692015076',
     description: 'Mayil Coconut Chutney Powder 200g',
-    category_id: 2,
+    categoryId: 2,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -174,7 +174,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/WhatsAppImage2024-06-09at4.00.14PM_1e76ce50-0557-4932-acbb-60ddb12abe95_540x.jpg?v=1718436099',
     description: 'Asians Banana Chips 200 G',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -184,7 +184,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/koo_540x.jpg?v=1692182165',
     description: 'Parle G Biscuits 800g',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -194,7 +194,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/top_540x.jpg?v=1692180229',
     description: 'Viswas Tapioca Chips Round Pla',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -204,7 +204,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/cak_540x.jpg?v=1692178322',
     description: 'Britannia Premium CakeRusk 550g',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -214,7 +214,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/nk_540x.jpg?v=1692176985',
     description: 'Elite Milk Rusk 200gm',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -224,7 +224,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/nj_540x.jpg?v=1692176792',
     description: 'Elite Elaichi Rusk 200gm',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -235,7 +235,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/WhatsAppImage2024-06-09at4.00.14PM_540x.jpg?v=1718435962',
     description: 'Asians Banana Chips 1kg',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -245,7 +245,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/plum_540x.jpg?v=1692191362',
     description: 'Elite Plum Surprise 400gm',
-    category_id: 6,
+    categoryId: 6,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -256,7 +256,7 @@ export const products: Product[] = [
     image:
       'https://homeland.net.nz/cdn/shop/files/download_21_360x.jpg?v=1692102351',
     description: 'Saras Biriyani Masala 100g',
-    category_id: 3,
+    categoryId: 3,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -266,7 +266,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/sf_360x.jpg?v=1692102878',
     description: 'Saras Fish Masala 100g',
-    category_id: 3,
+    categoryId: 3,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -276,7 +276,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/52_360x.png?v=1703699810',
     description: 'Ajmi Vermicelli Payasam Mix 300g',
-    category_id: 4,
+    categoryId: 4,
     location: 'Auckland, Auckland, New Zealand',
   },
   {
@@ -286,7 +286,7 @@ export const products: Product[] = [
     currency: '$',
     image: 'https://homeland.net.nz/cdn/shop/files/mna_360x.jpg?v=1692110255',
     description: 'Mayil Maanga Curry 450g',
-    category_id: 4,
+    categoryId: 4,
     location: 'Auckland, Auckland, New Zealand',
   },
 ]

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       domain="harakeke-2025-mariya.au.auth0.com"
       clientId="oMswOSfyKGZvOGVnNe9uiikjWd8adBOo"
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}/cms`,
         audience: 'https://BigMart/api',
       }}
     >

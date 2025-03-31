@@ -3,9 +3,9 @@ import Carousel from './Carousel'
 
 function Layout() {
   const images = [
+    '/client/assets/bgmain.WebP',
     '/client/assets/bmbgc2.jpg',
     '/client/assets/bmbgc4.jpg',
-    '/client/assets/bgmain.WebP',
   ]
   return (
     <div className="main-layout">

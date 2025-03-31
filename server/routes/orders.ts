@@ -8,10 +8,11 @@ import { sendOrderEmail } from './emailService.ts'
 const router = Router()
 
 // save order
+
+// post:   http://localhost:3002/api/v1/orders/
 router.post('/', async (req, res, next) => {
-  // console.log('save order 1 terminal', req.body)
   const { customer, payment, cart } = req.body
-  console.log('save order 1 terminal', customer)
+  //console.log('save order 1 terminal', customer)
   if (!customer || !payment || !cart) {
     res.sendStatus(StatusCodes.BAD_REQUEST).send('Missing required fields') //400
     return
@@ -31,9 +32,8 @@ router.post('/', async (req, res, next) => {
     await db.saveCartItems(cartId, cart)
     // Generate order summary content
     const orderSummary = generateOrderEmail(customer, cart, payment.totalAmount)
-
     // Send order confirmation email
-    //await sendOrderEmail(customer.email, orderSummary)
+    // await sendOrderEmail(customer.email, orderSummary)
 
     // Save the order
     const orderId = await db.saveOrder(

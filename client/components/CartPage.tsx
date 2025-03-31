@@ -150,7 +150,18 @@ function CartPage() {
 
           <p className="total-price">Total: ${calculateSubtotal()}</p>
 
-          <Link to="/checkout" className="checkout-button">
+          <Link
+            to={cart.length > 0 ? '/checkout' : '#'}
+            className={`checkout-button ${cart.length === 0 ? 'disabled' : ''}`}
+            onClick={(e) => {
+              if (cart.length === 0) {
+                e.preventDefault()
+                alert(
+                  'Your cart is empty! Add items before proceeding to checkout.'
+                )
+              }
+            }}
+          >
             Proceed to Checkout
           </Link>
           <Link to="/ProductsList" className="continue-shopping">

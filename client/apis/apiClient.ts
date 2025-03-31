@@ -1,4 +1,4 @@
-import { OrderHistory } from '../../models/order'
+import { OrderDetail, OrderHistory } from '../../models/order'
 import { Category, CategoryData } from './../../models/category'
 import request from 'superagent'
 
@@ -24,6 +24,7 @@ export async function getCategoryDataById(
   }
 }
 
+//order history admin
 export async function getOrderHistory(): Promise<OrderHistory[]> {
   try {
     const response = await request.get(`${rootUrl}/orders/order-history`)
@@ -34,6 +35,38 @@ export async function getOrderHistory(): Promise<OrderHistory[]> {
       throw new Error(error.message)
     }
     throw new Error('An unknown error occurred while fetching order history')
+  }
+}
+
+export async function getOrderDetailByOrderId(
+  orderId: number
+): Promise<OrderDetail | undefined> {
+  try {
+    const response = await request.get(`${rootUrl}/orders/${orderId}`)
+
+    return response.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+    throw new Error(
+      'An unknown error occurred while fetching category Data by id'
+    )
+  }
+}
+
+export async function deleteOrderHistory(orderId: number) {
+  try {
+    const res = await request.delete(`/api/v1/orders/${orderId}`)
+    return res.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    } else {
+      throw new Error(
+        'An unknown error occurred while deleting the order History'
+      )
+    }
   }
 }
 
@@ -60,19 +93,6 @@ export async function createNewCategory(
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message)
-    }
-  }
-}
-
-export async function deleteCategoryById(id: number) {
-  try {
-    const res = await request.delete(`/api/v1/categories/${id}`)
-    return res.body
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
-    } else {
-      throw new Error('An unknown error occurred while deleting the todo')
     }
   }
 }

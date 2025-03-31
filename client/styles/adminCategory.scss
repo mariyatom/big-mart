@@ -41,7 +41,7 @@ button:hover {
 }
 
 /* Styling the edit and delete buttons */
-.edit-button, .delete-button, .new-button {
+.edit-button, .delete-button, .new-button, .detail-button {
   font-size: 16px;
   cursor: pointer;
   margin-left: 10px;
@@ -53,6 +53,10 @@ button:hover {
 
 .delete-button {
   color: #f44336; 
+}
+
+.detail-button{
+color: #0fccce;
 }
 
 /* To give a pencil icon as edit */

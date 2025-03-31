@@ -16,6 +16,7 @@ import SearchResult from './components/SearchResult'
 import EditCategory from './components/CMS/EditCategory'
 import NewCategory from './components/CMS/NewCategory'
 import OrderHistory from './components/CMS/OrderHistory'
+import OrderHistoryDetail from './components/CMS/OrderHistoryDetail'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
@@ -37,6 +38,7 @@ const routes = createRoutesFromElements(
       <Route path="edit-category/:id" element={<EditCategory />} />
       <Route path="new-category" element={<NewCategory />} />
       <Route path="order-history" element={<OrderHistory />} />
+      <Route path="order-detail/:orderId" element={<OrderHistoryDetail />} />
     </Route>
   </Route>
 )

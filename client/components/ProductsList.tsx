@@ -10,7 +10,7 @@ import ProductsByCategory from './ProductsByCategory'
 
 function ProductsList() {
   const addToCart = useCartStore((state) => state.addToCart)
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]) // ⬅️ Store selected categories
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]) // Store selected categories
 
   // Fetch categories
   const {
@@ -41,7 +41,7 @@ function ProductsList() {
   const categories = categoriesData?.categories ?? []
   const products = productsData?.products ?? []
 
-  // ✅ **Filter categories based on selected checkboxes**
+  //  **Filter categories based on selected checkboxes**
   const filteredCategories =
     selectedCategories.length > 0
       ? categories.filter((category) =>
@@ -49,7 +49,7 @@ function ProductsList() {
         )
       : categories
 
-  // ✅ **Filter products by selected category**
+  // **Filter products by selected category**
   const filterProductsByCategory = (categoryId: number) => {
     return products.filter((product) => product.categoryId === categoryId)
   }
@@ -59,7 +59,7 @@ function ProductsList() {
       <aside className="sidebar">
         <FilterSidebar
           selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories} // ✅ Pass state to FilterSidebar
+          setSelectedCategories={setSelectedCategories} //  Pass state to FilterSidebar
         />
       </aside>
       <main className="products">

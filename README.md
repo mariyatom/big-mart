@@ -1,3 +1,41 @@
+# 🛒 BigMart
+
+BigMart is a full-stack e-commerce web application built with **React**, **Node.js**, **SQLite**, and **Zustand**. It allows users to browse products, add them to a cart,adjust the item quantity and place orders — all powered by a simple and efficient backend.
+
+---
+
+## 🚀 Tech Stack
+
+- **Frontend:** React + TypeScript
+- **State Management:** Zustand
+- **Backend:** Node.js + Express + TypeScript
+- **Database:** SQLite (via Knex.js)
+
+---
+
+## 📦 Features
+
+- 🧾 View products by category  
+- 🛒 Add/remove items from cart  
+- 🔢 View total quantity of cart items  
+- 🧼 Clear cart  
+- 📬 Place an order (data saved to SQLite)
+- Search the products
+
+---
+
+
+### 🧑‍💻 Admin CMS
+- Manage categories, products, and orders.
+- Add/edit/delete categories and products.
+- View customer orders and history.
+-----------
+
+npm install
+npm run knex migrate:latest  // for db
+npm run knex seed:run        // for db
+npm run dev                 // port 3002
+
 # Boilerplate: Fullstack with Sass
 
 ## Setup

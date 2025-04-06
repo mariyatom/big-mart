@@ -1,27 +1,37 @@
-import React, { useState } from 'react'
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useCategories } from '../hooks/useCategories'
+import { useCartStore } from '../store/useCartStore' // Import Zustand store
 import '../styles/app.scss'
 import SearchBar from './SearchBar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
-const categories = [
-  'Rice & Wheat',
-  'Pickles & Chutney Powders',
-  'Spices & Masalas',
-  'Ready to Cook & Eat',
-  'Oil, Ghee & Vinegar',
-  'Snacks & Bakery',
-  'Dals, Lentils & Pulses',
-  'Salt, Sugar & Jaggery',
-  'Sweets & Chocolates',
-  'Miscellaneous',
-  'Frozen Items',
-]
+import LoadingIndicator from './LoadingIndicator'
+import ErrorMessage from './ErrorMessage'
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false)
   const navigate = useNavigate()
+  const cart = useCartStore((state) => state.cart) // Get cart from Zustand
+
+  // Fetch categories dynamically
+  const { data, isLoading, isError, error } = useCategories()
+
+  // Handle Loading State
+  if (isLoading) {
+    return <LoadingIndicator />
+  }
+
+  // Handle Error State
+  if (isError) {
+    return <ErrorMessage error={error} />
+  }
+
+  // Calculate total quantity in cart
+  const totalCartQuantity = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  )
 
   const handleCartClick = () => {
     navigate('/cart')
@@ -45,13 +55,13 @@ function Navbar() {
           CATEGORIES
           {showDropdown && (
             <div className="dropdown-menu">
-              {categories.map((category, index) => (
+              {data?.categories.map((category) => (
                 <Link
-                  key={index}
-                  to={`/category/${category}`}
+                  key={category.id}
+                  to={`/category/${category.category}`}
                   className="dropdown-item"
                 >
-                  {category}
+                  {category.category}
                   <span className="dropdown-icon">›</span>
                 </Link>
               ))}
@@ -68,14 +78,15 @@ function Navbar() {
 
         {/* Right Side Icons */}
         <div className="nav-right">
-          <SearchBar />
+          <div className="cart-icon nav-item" onClick={handleCartClick}>
+            <FontAwesomeIcon icon={faShoppingCart} />
+            <span className="cart-count">{totalCartQuantity}</span>
+            {/* Show cart count */}
+          </div>
           <div className="user-icon nav-item">
             <FontAwesomeIcon icon={faUser} />
           </div>
-          <div className="cart-icon nav-item" onClick={handleCartClick}>
-            <FontAwesomeIcon icon={faShoppingCart} />
-            <span className="cart-count">0</span>
-          </div>
+          <SearchBar />
         </div>
       </div>
     </div>

@@ -1,34 +1,81 @@
-import React, { useState } from 'react'
-import { categories } from '../data/categories'
-import { products } from '../data/products'
+import { useState } from 'react'
+import { Category } from '../../models/category'
+import { useCategories } from '../hooks/useCategories'
+import { useProducts } from '../hooks/useProducts'
+import { useCartStore } from '../store/useCartStore'
+import ErrorMessage from './ErrorMessage'
+import FilterSidebar from './FilterSidebar'
+import LoadingIndicator from './LoadingIndicator'
 import ProductsByCategory from './ProductsByCategory'
-import { Product } from '../../models/product'
 
 function ProductsList() {
-  // TODO: this is the 'local' cart state.
-  const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([])
-  console.log('first load cart', cart)
+  const addToCart = useCartStore((state) => state.addToCart)
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]) // Store selected categories
 
-  const filterProductsByCategory = (categoryId: number) => {
-    return products.filter((product) => product.category_id === categoryId)
+  // Fetch categories
+  const {
+    data: categoriesData,
+    isPending: categoriesLoading,
+    isError: categoriesError,
+    error: categoriesErrorMessage,
+  } = useCategories()
+
+  // Fetch products
+  const {
+    data: productsData,
+    isPending: productsLoading,
+    isError: productsError,
+    error: productsErrorMessage,
+  } = useProducts()
+
+  if (categoriesLoading || productsLoading) {
+    return <LoadingIndicator />
   }
-  // TODO: this addToCart will call a mutation on an existing cartData query, with react query
-  // (you will need to define the query and the mutation already, ideally in the hooks folder)
-  const addToCart = (product: Product, quantity: number) => {
-    setCart([...cart, { product, quantity }])
-    console.log(`Added ${quantity} of ${product.name} to cart.`)
+
+  if (categoriesError || productsError) {
+    return (
+      <ErrorMessage error={categoriesErrorMessage || productsErrorMessage} />
+    )
+  }
+
+  const categories = categoriesData?.categories ?? []
+  const products = productsData?.products ?? []
+
+  //  **Filter categories based on selected checkboxes**
+  const filteredCategories =
+    selectedCategories.length > 0
+      ? categories.filter((category) =>
+          selectedCategories.includes(category.category)
+        )
+      : categories
+
+  // **Filter products by selected category**
+  const filterProductsByCategory = (categoryId: number) => {
+    return products.filter((product) => product.categoryId === categoryId)
   }
 
   return (
     <div className="products-container">
-      {categories.map((category) => (
-        <ProductsByCategory
-          key={category.id}
-          category={category}
-          filteredProducts={filterProductsByCategory(category.id)}
-          addToCart={addToCart}
+      <aside className="sidebar">
+        <FilterSidebar
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories} //  Pass state to FilterSidebar
         />
-      ))}
+      </aside>
+      <main className="products">
+        {filteredCategories.length > 0 ? (
+          filteredCategories.map((category: Category) => (
+            <ProductsByCategory
+              key={category.id}
+              category={category}
+              filteredProducts={filterProductsByCategory(category.id)}
+              addToCart={addToCart}
+            />
+          ))
+        ) : (
+          <p>No products available for selected categories.</p>
+        )}
+      </main>
     </div>
   )
 }

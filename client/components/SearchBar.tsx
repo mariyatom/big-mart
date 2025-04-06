@@ -13,7 +13,8 @@ function SearchBar() {
   const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (searchTerm.trim()) {
-      navigate(`/ProductsList?search=${searchTerm}`)
+      navigate(`/search-result?search=${searchTerm}`)
+      setSearchTerm('')
     }
   }
 

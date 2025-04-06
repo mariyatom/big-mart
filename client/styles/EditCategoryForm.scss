@@ -1,0 +1,67 @@
+.admin-edit-category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 2%;
+  padding: 5%;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 95%;
+}
+
+.admin-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border 0.3s;
+}
+
+.admin-input:focus {
+  border-color: #408a8a;
+  outline: none;
+}
+
+.admin-image-preview {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.admin-edit-cate-img {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.admin-button {
+  background-color: #408a8a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.admin-button:hover {
+  background-color: #408a8a;
+}

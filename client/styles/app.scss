@@ -1,3 +1,7 @@
+
+
+// navbar
+
 .navbar {
   overflow: visible; /* Ensures dropdown is visible */
   background-color: #333;
@@ -8,7 +12,9 @@
   align-items: center;
   z-index: 1000;
 }
-
+a {
+  text-decoration: none;
+}
 .nav-link {
   padding: 14px 20px;
   text-decoration: none;
@@ -46,7 +52,7 @@
   padding: 12px 15px;
   text-decoration: none;
   color: black;
-  font-weight: 600;
+  font-weight:100;
   display: flex;
   justify-content: space-between; /* Text on left, icon on right */
   align-items: center;

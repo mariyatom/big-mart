@@ -1,4 +1,3 @@
-import React from 'react'
 import { Category } from '../../models/category'
 import { Product } from '../../models/product'
 import '../styles/products.scss'

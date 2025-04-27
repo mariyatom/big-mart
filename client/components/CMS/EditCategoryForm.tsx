@@ -1,4 +1,4 @@
-import '../../styles/EditCategoryForm.scss'
+import '../../styles/editCategoryForm.scss'
 
 interface EditCategoryFormProps {
   formData: {

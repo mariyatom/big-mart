@@ -1,7 +1,7 @@
 import React from 'react'
-import '../styles/FilterSidebar.scss'
+import '../styles/filterSidebar.scss'
 import { useCategories } from '../hooks/useCategories'
-import { Category } from '../../models/category' // ✅ Import Category type
+import { Category } from '../../models/category' //
 import ErrorMessage from './ErrorMessage'
 import LoadingIndicator from './LoadingIndicator'
 

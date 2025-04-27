@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useOrderHistoryByOrderId } from '../../hooks/useOrders'
 import LoadingIndicator from '../LoadingIndicator'
 import ErrorMessage from '../ErrorMessage'
-import '../../styles/OrderHistoryDetail.scss'
+import '../../styles/orderHistoryDetail.scss'
 
 function OrderHistoryDetail() {
   const params = useParams()

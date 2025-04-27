@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import shoppingCart from '../assets/shopping.png' // Adjust path as needed
-import '../styles/AboutUs.scss'
+import '../styles/aboutUs.scss'
 
 const AboutUs = () => {
   return (

@@ -96,3 +96,17 @@ export async function createNewCategory(
     }
   }
 }
+export async function deleteCategoryById(id: number) {
+  try {
+    const res = await request.delete(`/api/v1/categories/${id}`)
+    return res.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    } else {
+      throw new Error(
+        'An unknown error occurred while deleting the order History'
+      )
+    }
+  }
+}

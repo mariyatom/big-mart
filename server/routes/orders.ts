@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 
 import * as db from '../db/index.ts'
 import { generateOrderEmail } from './emailTemplate.ts'
-import { sendOrderEmail } from './emailService.ts'
+//import { sendOrderEmail } from './emailService.ts'
 
 const router = Router()
 

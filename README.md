@@ -34,7 +34,7 @@ BigMart is a full-stack e-commerce web application built with **React**, **Node.
 npm install
 npm run knex migrate:latest  // for db
 npm run knex seed:run        // for db
-npm run dev                 // port 3002
+npm run dev                 // port 3000
 
 # Boilerplate: Fullstack with Sass
 

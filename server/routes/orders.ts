@@ -9,7 +9,7 @@ const router = Router()
 
 // save order
 
-// post:   http://localhost:3002/api/v1/orders/
+// post:   http://localhost:3000/api/v1/orders/
 router.post('/', async (req, res, next) => {
   const { customer, payment, cart } = req.body
   //console.log('save order 1 terminal', customer)
@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
 
 // cms- admin order history
 
-// http://localhost:3002/api/v1/orders/order-history/
+// http://localhost:3000/api/v1/orders/order-history/
 router.get('/order-history', async (req, res, next) => {
   try {
     const ordersOverview = await db.getAllOrderOverviewWithCustomerEmail()
@@ -65,7 +65,7 @@ router.get('/order-history', async (req, res, next) => {
 })
 
 // GET route for fetching order details by ID,
-//http://localhost:3002/api/v1/orders/12
+//http://localhost:3000/api/v1/orders/12
 
 router.get('/:orderId', async (req, res, next) => {
   const orderId = parseInt(req.params.orderId, 10)

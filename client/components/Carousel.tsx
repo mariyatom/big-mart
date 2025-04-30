@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../styles/carousel.scss'
 
 interface CarouselProps {
@@ -14,7 +14,7 @@ const Carousel = ({ images }: CarouselProps) => {
 
   const prevSlide = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
     )
   }
 

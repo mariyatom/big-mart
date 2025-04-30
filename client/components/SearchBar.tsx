@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/searchbar.scss'
 

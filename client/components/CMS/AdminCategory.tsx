@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Category } from '../../../models/category'
 import { useCategories, useDeleteCategory } from '../../hooks/useCategories'
+import '../../styles/adminCategory.scss'
 import ErrorMessage from '../ErrorMessage'
 import LoadingIndicator from '../LoadingIndicator'
-import '../../styles/adminCategory.scss'
-import { useNavigate } from 'react-router-dom'
 
 function AdminCategory() {
   const navigate = useNavigate()

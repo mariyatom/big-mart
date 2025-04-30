@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import {
-  FaUser,
-  FaSignOutAlt,
-  FaBars,
-  FaListAlt,
-  FaEnvelope,
-  FaCog,
-  FaThList,
-  FaBox,
-  FaStore,
-} from 'react-icons/fa'
-import '../../styles/cmsNavbar.scss'
 import { useAuth0 } from '@auth0/auth0-react'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { useState } from 'react'
+import {
+  FaBars,
+  FaBox,
+  FaCog,
+  FaEnvelope,
+  FaListAlt,
+  FaSignOutAlt,
+  FaStore,
+  FaThList,
+  FaUser,
+} from 'react-icons/fa'
 import { Link, Outlet } from 'react-router-dom'
+import '../../styles/cmsNavbar.scss'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 const CmsNavbar = () => {
   const [collapsed, setCollapsed] = useState(false)

@@ -1,9 +1,8 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useOrderHistoryByOrderId } from '../../hooks/useOrders'
-import LoadingIndicator from '../LoadingIndicator'
-import ErrorMessage from '../ErrorMessage'
 import '../../styles/orderHistoryDetail.scss'
+import ErrorMessage from '../ErrorMessage'
+import LoadingIndicator from '../LoadingIndicator'
 
 function OrderHistoryDetail() {
   const params = useParams()
@@ -104,7 +103,7 @@ function OrderHistoryDetail() {
                 <td>
                   $
                   {(product.productUnitPrice * product.productQuantity).toFixed(
-                    2
+                    2,
                   )}
                 </td>
               </tr>

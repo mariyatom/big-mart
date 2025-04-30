@@ -1,6 +1,5 @@
-import React from 'react'
+import { useLocation } from 'react-router-dom'
 import CmsNavbar from './CmsNavbar'
-import { Outlet, useLocation } from 'react-router-dom'
 
 function Cms() {
   const location = useLocation()

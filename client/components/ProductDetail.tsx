@@ -1,16 +1,16 @@
 // components/ProductDetail.tsx
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ChangeEvent, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Product } from '../../models/product'
 import { useProducts } from '../hooks/useProducts'
 import { useCartStore } from '../store/useCartStore' // Import Zustand store
 import '../styles/productDetail.scss'
+import Breadcrumbs from './Breadcrumbs'
 import ErrorMessage from './ErrorMessage'
 import LoadingIndicator from './LoadingIndicator'
-import Breadcrumbs from './Breadcrumbs'
 import ProductImages from './ProductImages'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function ProductDetail() {
   const { productName } = useParams() // Get product name from URL
@@ -29,7 +29,7 @@ function ProductDetail() {
 
   // Find the product based on the name from URL params
   const product: Product | undefined = data?.products.find(
-    (p) => p.name === productName
+    (p) => p.name === productName,
   )
   if (!product) {
     return <div>Product not found</div>

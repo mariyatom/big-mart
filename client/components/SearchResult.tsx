@@ -1,8 +1,7 @@
-import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useProducts } from '../hooks/useProducts'
-import LoadingIndicator from './LoadingIndicator'
 import ErrorMessage from './ErrorMessage'
+import LoadingIndicator from './LoadingIndicator'
 
 function SearchResult() {
   const [searchParams] = useSearchParams()

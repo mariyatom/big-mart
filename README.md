@@ -48,6 +48,8 @@ npm run dev                 // port 3000
      - Runs tests
 
      - Type-checks code
+     - -npm install @typescript-eslint/eslint-plugin@latest --save-dev
+     - -npx eslint . --fix
 
 # Boilerplate: Fullstack with Sass
 

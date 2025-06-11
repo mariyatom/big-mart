@@ -70,7 +70,7 @@ export async function deleteOrderHistory(orderId: number) {
   }
 }
 
-export async function updateCategory(id: Number, category: Category) {
+export async function updateCategory(id: number, category: Category) {
   try {
     const res = await request
       .patch(`${rootUrl}/categories/${id}`)

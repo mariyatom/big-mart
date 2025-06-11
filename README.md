@@ -36,6 +36,19 @@ npm run knex migrate:latest  // for db
 npm run knex seed:run        // for db
 npm run dev                 // port 3000
 
+### CI/CD
+
+- current GitHub Actions workflow (main.yml) includes CI (Continuous Integration) — it runs tasks like linting, testing, and type checking
+     - ✔️ CI is set up: on every push or PR to dev or main, it:
+
+     - Installs dependencies
+
+     - Lints your code
+
+     - Runs tests
+
+     - Type-checks code
+
 # Boilerplate: Fullstack with Sass
 
 ## Setup
